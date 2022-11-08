@@ -2,11 +2,20 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, deleteFromCart } from "../actions/cartActions";
 export default function CartPage() {
-  const cartState = useSelector((state) => state.cartReducer);
-  const cartItems = cartState.cartItems;
+  const { cartItems } = useSelector((state) => state.cartReducer);
   let subtotal = cartItems.reduce((x, item) => x + item.price, 0);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const dispatch = useDispatch();
+
+  function handleCheckout() {
+    if (currentUser) {
+      window.location.href = "/checkout";
+    } else {
+      return alert("login to checkout");
+    }
+  }
+
   return (
     <div>
       <div className="row justify-content-center">
@@ -67,7 +76,9 @@ export default function CartPage() {
         </div>
         <div className="col-md-4 text-end">
           <h1>Sub Total: {subtotal} /-</h1>
-          <button className="btn btn-danger">Check Out</button>
+          <button className="btn btn-danger" onClick={handleCheckout}>
+            Check Out
+          </button>
         </div>
       </div>
     </div>
