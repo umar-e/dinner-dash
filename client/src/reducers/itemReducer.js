@@ -1,4 +1,4 @@
-export const getAllItemsReducer = (state = {items: []}, action) => {
+export const getAllItemsReducer = (state = { items: [] }, action) => {
   switch (action.type) {
     case "GET_ITEMS_REQUEST":
       return {

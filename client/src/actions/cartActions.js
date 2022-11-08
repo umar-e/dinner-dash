@@ -8,12 +8,11 @@ export const addToCart = (item, quantity, varient) => (dispatch, getState) => {
     varient,
     quantity: Number(quantity),
   };
-if(cartItem.quantity < 1){
-  alert('items cannot be less than one')
-}
-else{
-  dispatch({ type: "ADD_TO_CART", payload: cartItem });
-}
+  if (cartItem.quantity < 1) {
+    alert("items cannot be less than one");
+  } else {
+    dispatch({ type: "ADD_TO_CART", payload: cartItem });
+  }
   const cartItems = getState().cartReducer.cartItems;
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };

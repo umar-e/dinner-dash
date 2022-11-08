@@ -9,9 +9,9 @@ export default function Item({ item }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const dispatch = useDispatch()
-  function addToCartHandler(){
-    dispatch(addToCart(item,quantity, varient))
+  const dispatch = useDispatch();
+  function addToCartHandler() {
+    dispatch(addToCart(item, quantity, varient));
   }
   return (
     <div className="m-5 shadow-lg p-3 mb-5 bg-white rounded ">
@@ -52,11 +52,15 @@ export default function Item({ item }) {
       </div>
       <div className="flex-container">
         <div className="w-100 m-1">
-          <h4 className="mt-1">Price: {item.prices[0][varient] * quantity} Rs.</h4>
+          <h4 className="mt-1">
+            Price: {item.prices[0][varient] * quantity} Rs.
+          </h4>
         </div>
 
         <div className="w-100 m-1">
-          <button className="btn btn-danger" onClick={addToCartHandler} >ADD TO CART</button>
+          <button className="btn btn-danger" onClick={addToCartHandler}>
+            ADD TO CART
+          </button>
         </div>
       </div>
 

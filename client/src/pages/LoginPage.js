@@ -3,20 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
 
 export default function LoginPage() {
-
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    if(localStorage.getItem('currentUser')){
-      window.location.href = '/'
+  useEffect(() => {
+    if (localStorage.getItem("currentUser")) {
+      window.location.href = "/";
     }
-  },[])
+  }, []);
 
   function login() {
-    const user = {email, password}
-    dispatch(loginUser(user))
+    const user = { email, password };
+    dispatch(loginUser(user));
   }
   return (
     <div className="row justify-content-center">
