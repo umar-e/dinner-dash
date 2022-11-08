@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllItems } from "../actions/itemActions";
+import Error from "../components/Error";
 import Item from "../components/Item";
+import Loading from "../components/Loading";
 export default function HomePage() {
   const dispatch = useDispatch();
 
@@ -17,9 +19,9 @@ export default function HomePage() {
     <div>
       <div className="row">
         {loading ? (
-          <h1>Loading</h1>
+          <Loading />
         ) : error ? (
-          <h1>something went wrong</h1>
+          <Error error="Something went wrong" />
         ) : (
           items.map((item) => {
             return (
