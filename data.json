@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Pizza",
+    "varients": ["small", "medium", "large"],
+    "prices": [{ "small": 100, "medium": 200, "large": 300 }],
+    "category": ["Pizza", "Food"],
+    "image":
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/800px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
+    "description": "A generic pizza"
+  },
+  {
+    "name": "Some Other food",
+    "varients": ["small", "medium", "large"],
+    "prices": [{ "small": 150, "medium": 250, "large": 500 }],
+    "category": ["Food"],
+    "image": "https://www.refrigeratedfrozenfood.com/ext/resources/NEW_RD_Website/DefaultImages/default-pasta.jpg?1430942591",
+    "description": "A generic other food"
+  },
+  {
+    "name": "dishes",
+    "varients": ["one", "three", "six"],
+    "prices": [{ "one": 100, "three": 250, "six": 450 }],
+    "category": ["Cutlery"],
+    "image": "https://cb.scene7.com/is/image/Crate/EssentialDinnerPlt10p5inS8SSS20",
+    "description": "some dishes"
+  },
+  {
+    "name": "another pizza",
+    "varients": ["small", "medium", "large"],
+    "prices": [{ "small": 100, "medium": 200, "large": 300 }],
+    "category": ["Food", "Pizza"],
+    "image":"https://st.depositphotos.com/1900347/4146/i/450/depositphotos_41466555-stock-photo-image-of-slice-of-pizza.jpg",
+    "description": "A generic pizza"
+  },
+  {
+    "name": "forks",
+    "varients": ["one", "three", "six"],
+    "prices": [{ "one": 100, "three": 250, "six": 450 }],
+    "category": ["Cutlery"],
+    "image":"https://media.istockphoto.com/photos/fork-picture-id149341227?k=20&m=149341227&s=612x612&w=0&h=6di_WreNIiQCgtOBvJu7m8vQPheQhWwh9bgndbCjKfw=",
+    "description": "fork"
+  },
+  {
+    "name": "spoons",
+    "varients": ["one", "three", "six"],
+    "prices": [{ "one": 100, "three": 250, "six": 450 }],
+    "category": ["Cutlery"],
+    "image":"https://ii.worldmarket.com/fcgi-bin/iipsrv.fcgi?FIF=/images/worldmarket/source/26506_XXX_v1.tif&wid=480&cvt=jpeg",
+    "description": "A spoon pizza"
+  }
+]
