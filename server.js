@@ -8,9 +8,11 @@ const userRoute = require("./routes/userRoute");
 const ordersRoute = require("./routes/ordersRoute");
 app.use("/api/users/", userRoute);
 app.use("/api/orders/", ordersRoute);
+
 app.get("/", (req, res) => {
   res.send("Server working...");
 });
+
 app.use("/api/items/", itemsRoute);
 
 const port = process.env.PORT || 5000;
