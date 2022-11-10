@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../actions/orderActions";
-import { registerUser } from "../actions/userActions";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import Success from "../components/Success";
@@ -30,6 +29,9 @@ export default function CheckOutPage() {
       userId: currentUser._id,
       cartItems: cartItems,
       subtotal: subtotal,
+      address,
+      cardNumber: Number(cardNumber),
+      cvv: Number(cvv),
     };
     dispatch(placeOrder(order));
   }
