@@ -12,3 +12,16 @@ export const placeOrder = (order) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const getAllOrders = (currentUser) => async (dispatch) => {
+  dispatch({ type: "GET_ORDERS_REQUEST" });
+  try {
+    const response = await axios.post("/api/orders/getallorders", {
+      currentUser,
+    });
+    console.log(response);
+    dispatch({ type: "GET_ORDERS_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "GET_ORDERS_FAILED", payload: error });
+  }
+};

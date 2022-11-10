@@ -7,9 +7,9 @@ import Loading from "../components/Loading";
 export default function HomePage() {
   const dispatch = useDispatch();
 
-  const itemsState = useSelector((state) => state.getAllItemsReducer);
-
-  const { items, error, loading } = itemsState;
+  const { items, error, loading } = useSelector(
+    (state) => state.getAllItemsReducer
+  );
 
   useEffect(() => {
     dispatch(getAllItems());

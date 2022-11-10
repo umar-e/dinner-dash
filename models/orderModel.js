@@ -9,6 +9,7 @@ const orderSchema = mongoose.Schema(
     address: { type: String, required: true },
     cardNumber: { type: Number, required: true },
     cvv: { type: Number, required: true },
+    status: { type: String, default: "ordered" },
   },
   {
     timestamps: true,

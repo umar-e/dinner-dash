@@ -13,6 +13,19 @@ router.post("/placeorder", async (req, res) => {
   }
 });
 
-router.get("/getorders", async (req, res) => {});
+router.post("/getallorders", async (req, res) => {
+  const { currentUser } = req.body;
+  let orders;
+  try {
+    if (currentUser.isAdmin) {
+      orders = await Order.find({});
+    } else {
+      orders = await Order.find({});
+    }
+    res.send(orders);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+});
 
 module.exports = router;

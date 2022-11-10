@@ -4,8 +4,8 @@ import { logoutUser } from "../actions/userActions";
 
 export default function Navbar() {
   const cartState = useSelector((state) => state.cartReducer);
-  const userState = useSelector((state) => state.loginUserReducer);
-  const { currentUser } = userState;
+  const { currentUser } = useSelector((state) => state.loginUserReducer);
+
   const dispatch = useDispatch();
   return (
     <div>
@@ -42,7 +42,7 @@ export default function Navbar() {
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/orders">
                     Orders
                   </a>
                   <a

@@ -7,6 +7,7 @@ export const addToCart = (item, quantity, varient) => (dispatch, getState) => {
     price: item.prices[0][varient] * quantity,
     varient,
     quantity: Number(quantity),
+    description: item.description,
   };
   if (cartItem.quantity < 1) {
     alert("items cannot be less than one");
