@@ -12,7 +12,7 @@ export default function OrderItem({ item }) {
         <b onClick={handleShow}>{item.name}</b>{" "}
       </p>
       <p>
-        {item.varient} * {item.quantity} = {item.price}
+        {item.price} * {item.quantity} = {item.price * item.quantity}
       </p>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

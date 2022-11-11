@@ -18,9 +18,9 @@ router.post("/getallorders", async (req, res) => {
   let orders;
   try {
     if (currentUser.isAdmin) {
-      orders = await Order.find({});
+      orders = await Order.find({}).sort({createdAt: -1});
     } else {
-      orders = await Order.find({});
+      orders = await Order.find({userId: currentUser._id}).sort({createdAt: -1});
     }
     res.send(orders);
   } catch (error) {

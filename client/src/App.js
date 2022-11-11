@@ -9,6 +9,11 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import CheckOutPage from "./pages/CheckOutPage";
 import OrdersPage from "./pages/OrdersPage";
+import AdminPage from "./pages/AdminPage";
+import ItemList from "./components/admin/ItemList"
+import OrderList from "./components/admin/OrderList"
+import NewItem from "./components/admin/NewItem"
+
 
 function App() {
   return (
@@ -17,11 +22,15 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" exact element={<HomePage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/cart" exact element={<CartPage />} />
           <Route path="/register" exact element={<RegisterPage />} />
           <Route path="/login" exact element={<LoginPage />} />
           <Route path="/checkout" exact element={<CheckOutPage />} />
           <Route path="/orders" exact element={<OrdersPage />} />
+          <Route path="/admin/itemlist" element={<ItemList />}/>
+          <Route path="/admin/orderlist" element={<OrderList />}/>
+          <Route path="/admin/newitem" element={<NewItem />}/>
         </Routes>
       </Router>
     </div>

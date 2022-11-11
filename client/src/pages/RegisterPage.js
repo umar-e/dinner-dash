@@ -60,7 +60,7 @@ export default function RegisterPage() {
           />
           <input
             required
-            type="text"
+            type="password"
             placeholder="password"
             className="form-control"
             value={password}
@@ -68,7 +68,7 @@ export default function RegisterPage() {
           />
           <input
             required
-            type="text"
+            type="password"
             placeholder="confirm password"
             className="form-control"
             value={confirmPassword}

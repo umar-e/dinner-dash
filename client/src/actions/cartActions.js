@@ -1,11 +1,9 @@
-export const addToCart = (item, quantity, varient) => (dispatch, getState) => {
+export const addToCart = (item, quantity) => (dispatch, getState) => {
   let cartItem = {
     name: item.name,
     _id: item._id,
     image: item.image,
-    prices: item.prices,
-    price: item.prices[0][varient] * quantity,
-    varient,
+    price: item.price,
     quantity: Number(quantity),
     description: item.description,
   };

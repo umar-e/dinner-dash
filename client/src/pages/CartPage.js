@@ -27,18 +27,18 @@ export default function CartPage() {
               <div className="flex-container">
                 <div className="text-start m-1 w-100">
                   <h5>
-                    {item.name} [{item.varient}]
+                    {item.name}
                   </h5>
                   <h5>
-                    Price: {item.quantity} * {item.prices[0][item.varient]} ={" "}
-                    {item.price}
+                    Price: {item.quantity} * {item.price} = {" "}
+                    {item.price * item.quantity}
                   </h5>
                   <h5 style={{ display: "inline" }}>Quantity: </h5>
                   <i
                     className="fa fa-plus"
                     onClick={() => {
                       dispatch(
-                        addToCart(item, item.quantity + 1, item.varient)
+                        addToCart(item, item.quantity + 1)
                       );
                     }}
                   ></i>
@@ -47,7 +47,7 @@ export default function CartPage() {
                     className="fa fa-minus"
                     onClick={() => {
                       dispatch(
-                        addToCart(item, item.quantity - 1, item.varient)
+                        addToCart(item, item.quantity - 1)
                       );
                     }}
                   ></i>

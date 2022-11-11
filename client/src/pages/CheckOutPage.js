@@ -18,9 +18,10 @@ export default function CheckOutPage() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!currentUser) {
+      window.location.href = "/cart"
       alert("Please login first");
     }
-  }, []);
+  });
 
   function handleCheckout() {
     let order = {
