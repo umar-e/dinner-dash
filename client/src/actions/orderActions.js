@@ -26,3 +26,15 @@ export const getAllOrders = (currentUser) => async (dispatch) => {
   }
 };
 
+export const changeOrderStatus = (order) => async (dispatch) => {
+  dispatch({ type: "CHANGE_STATUS_REQUEST" });
+  console.log(order);
+  try {
+    await axios.patch("/api/orders/changestatus", { order });
+    dispatch({ type: "CHANGE_STATUS_SUCCESS" });
+    window.location.href = "/admin/orderlist";
+  } catch (error) {
+    dispatch({ type: "CHANGE_STATUS_FAILED", payload: error });
+    console.log(error);
+  }
+};

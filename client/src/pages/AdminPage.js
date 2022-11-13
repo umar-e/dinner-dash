@@ -1,8 +1,5 @@
 import React from "react";
-import { Link, Route, Routes, Router } from "react-router-dom";
-import ItemList from "../components/admin/ItemList"
-import OrderList from "../components/admin/OrderList"
-import NewItem from "../components/admin/NewItem"
+import { Link } from "react-router-dom";
 
 export default function AdminPage() {
   return (
@@ -10,13 +7,19 @@ export default function AdminPage() {
       <h1>Admin</h1>
       <div className="flex-container">
         <div className="col">
-          <Link className="btn btn-primary w-75" to={"/admin/itemlist"}>All Items</Link>
+          <Link className="btn btn-primary w-75" to={"/admin/itemlist"}>
+            All Items
+          </Link>
         </div>
         <div className="col">
-          <Link className="btn btn-primary w-75" to={"/admin/orderlist"}>All Orders</Link>
+          <Link className="btn btn-primary w-75" to={"/admin/orderlist"}>
+            All Orders
+          </Link>
         </div>
         <div className="col">
-          <Link className="btn btn-primary w-75" to={"/admin/newitem"} >Add New Item</Link>
+          <Link className="btn btn-primary w-75" to={"/admin/newitem"}>
+            Add New Item
+          </Link>
         </div>
       </div>
     </div>

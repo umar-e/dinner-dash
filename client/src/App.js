@@ -10,10 +10,10 @@ import LoginPage from "./pages/LoginPage";
 import CheckOutPage from "./pages/CheckOutPage";
 import OrdersPage from "./pages/OrdersPage";
 import AdminPage from "./pages/AdminPage";
-import ItemList from "./components/admin/ItemList"
-import OrderList from "./components/admin/OrderList"
-import NewItem from "./components/admin/NewItem"
-
+import ItemList from "./components/admin/ItemList";
+import OrderList from "./components/admin/OrderList";
+import NewItem from "./components/admin/NewItem";
+import EditItem from "./components/admin/EditItem";
 
 function App() {
   return (
@@ -28,9 +28,10 @@ function App() {
           <Route path="/login" exact element={<LoginPage />} />
           <Route path="/checkout" exact element={<CheckOutPage />} />
           <Route path="/orders" exact element={<OrdersPage />} />
-          <Route path="/admin/itemlist" element={<ItemList />}/>
-          <Route path="/admin/orderlist" element={<OrderList />}/>
-          <Route path="/admin/newitem" element={<NewItem />}/>
+          <Route path="/admin/itemlist" element={<ItemList />} />
+          <Route path="/admin/orderlist" element={<OrderList />} />
+          <Route path="/admin/newitem" element={<NewItem />} />
+          <Route path="/admin/edititem/:id" element={<EditItem />} />
         </Routes>
       </Router>
     </div>

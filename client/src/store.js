@@ -5,21 +5,35 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
-import { getAllItemsReducer } from "./reducers/itemReducer";
+import {
+  getAllItemsReducer,
+  newItemReducer,
+  deleteItemReducer,
+  getItemByIdReducer,
+  changeItemStatusReducer,
+  editItemReducer,
+} from "./reducers/itemReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { loginUserReducer, registerUserReducer } from "./reducers/userReducer";
 import {
   getAllOrdersReducer,
   placeOrderReducer,
+  changeOrderStatusReducer,
 } from "./reducers/orderReducer";
 
 const finalReducer = combineReducers({
-  getAllItemsReducer: getAllItemsReducer,
-  cartReducer: cartReducer,
-  registerUserReducer: registerUserReducer,
-  loginUserReducer: loginUserReducer,
-  placeOrderReducer: placeOrderReducer,
-  getAllOrdersReducer: getAllOrdersReducer,
+  getAllItemsReducer,
+  cartReducer,
+  registerUserReducer,
+  loginUserReducer,
+  placeOrderReducer,
+  getAllOrdersReducer,
+  newItemReducer,
+  changeOrderStatusReducer,
+  deleteItemReducer,
+  getItemByIdReducer,
+  changeItemStatusReducer,
+  editItemReducer,
 });
 
 const cartItems = localStorage.getItem("cartItems")

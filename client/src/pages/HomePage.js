@@ -25,11 +25,13 @@ export default function HomePage() {
         ) : (
           items.map((item) => {
             return (
-              <div className="col-md-4 p-3" key={item._id}>
-                <div>
-                  <Item item={item} />
+              !item.isRetired && (
+                <div className="col-md-4 p-3" key={item._id}>
+                  <div>
+                    <Item item={item} />
+                  </div>
                 </div>
-              </div>
+              )
             );
           })
         )}
