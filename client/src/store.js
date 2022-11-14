@@ -2,14 +2,13 @@ import {
   legacy_createStore as createStore,
   applyMiddleware,
   combineReducers,
+  compose,
 } from "redux";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "@redux-devtools/extension";
 import {
   getAllItemsReducer,
   newItemReducer,
   deleteItemReducer,
-  getItemByIdReducer,
   changeItemStatusReducer,
   editItemReducer,
 } from "./reducers/itemReducer";
@@ -31,7 +30,6 @@ const finalReducer = combineReducers({
   newItemReducer,
   changeOrderStatusReducer,
   deleteItemReducer,
-  getItemByIdReducer,
   changeItemStatusReducer,
   editItemReducer,
 });
@@ -51,7 +49,8 @@ const initialState = {
     currentUser,
   },
 };
-const composeEnhancers = composeWithDevTools({});
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   finalReducer,
   initialState,

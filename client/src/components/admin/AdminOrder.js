@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import OrderItem from "../OrderItem";
+
 import { useDispatch } from "react-redux";
 import { changeOrderStatus } from "../../actions/orderActions";
-import OrderItem from "../OrderItem";
+
 export default function Order({ order }) {
   const dispatch = useDispatch();
   function statusHandler() {
     dispatch(changeOrderStatus(order));
   }
+
   return (
     <div className="flex-container">
       <div className="col">

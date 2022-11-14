@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getAllOrders } from "../actions/orderActions";
+
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import Order from "../components/Order";
@@ -8,13 +10,13 @@ import Order from "../components/Order";
 export default function OrdersPage() {
   const dispatch = useDispatch();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   const { orders, error, loading } = useSelector(
     (state) => state.getAllOrdersReducer
   );
 
   useEffect(() => {
-    dispatch(getAllOrders(currentUser));
-    console.log(orders);
+    dispatch(getAllOrders(currentUser, false));
   }, []);
 
   return (

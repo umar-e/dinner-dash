@@ -1,31 +1,35 @@
 import React, { useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   changeItemStatus,
   deleteItem,
   getAllItems,
 } from "../../actions/itemActions";
+
 import Error from "../Error";
 import Loading from "../Loading";
 
 export default function ItemList() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   const { items, error, loading } = useSelector(
     (state) => state.getAllItemsReducer
   );
 
   useEffect(() => {
+    if (!currentUser || !currentUser.isAdmin) {
+      window.location.href = "/";
+    }
     dispatch(getAllItems());
   }, []);
+
   function deleteHandler(item) {
     dispatch(deleteItem(item));
   }
-  function editHandler(item) {
-    navigate(`/admin/edititem/${item._id}`);
-  }
+
   function retireHandler(item) {
     dispatch(changeItemStatus(item));
   }
@@ -42,6 +46,7 @@ export default function ItemList() {
             <tr>
               <th>Item Name</th>
               <th>Image</th>
+              <th>Description</th>
               <th>Price </th>
               <th>Categories</th>
               <th>Status</th>
@@ -59,6 +64,7 @@ export default function ItemList() {
                     alt="img"
                   />
                 </td>
+                <td>{item.description}</td>
                 <td>{item.price}</td>
                 <td>
                   {item.category.map((cat) => {
@@ -76,10 +82,11 @@ export default function ItemList() {
                     }
                   ></i>
                   &nbsp; &nbsp;
-                  <i
+                  <Link
                     className="fa fa-pen-to-square"
-                    onClick={() => editHandler(item)}
-                  ></i>
+                    to={`/admin/edititem/${item._id}`}
+                    state={{ item }}
+                  ></Link>
                   &nbsp;
                   <i
                     onClick={() => deleteHandler(item)}

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+
 import { addToCart } from "../actions/cartActions";
+
 export default function Item({ item }) {
   const [quantity, setQuantity] = useState(1);
   const [show, setShow] = useState(false);
@@ -9,9 +11,11 @@ export default function Item({ item }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
+
   function addToCartHandler() {
     dispatch(addToCart(item, quantity));
   }
+
   return (
     <div className="m-5 shadow-lg p-3 mb-5 bg-white rounded ">
       <div onClick={handleShow}>
@@ -39,9 +43,7 @@ export default function Item({ item }) {
       </div>
       <div className="flex-container">
         <div className="w-100 m-1">
-          <h4 className="mt-1">
-            Price: {item.price * quantity} Rs.
-          </h4>
+          <h4 className="mt-1">Price: {item.price * quantity} Rs.</h4>
         </div>
 
         <div className="w-100 m-1">

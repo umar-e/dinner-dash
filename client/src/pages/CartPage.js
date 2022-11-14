@@ -1,9 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { addToCart, deleteFromCart } from "../actions/cartActions";
+
 export default function CartPage() {
   const { cartItems } = useSelector((state) => state.cartReducer);
-  let subtotal = cartItems.reduce((x, item) => x + item.price, 0);
+
+  let subtotal = cartItems.reduce(
+    (x, item) => x + item.price * item.quantity,
+    0
+  );
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const dispatch = useDispatch();
@@ -26,29 +32,23 @@ export default function CartPage() {
             return (
               <div className="flex-container">
                 <div className="text-start m-1 w-100">
+                  <h5>{item.name}</h5>
                   <h5>
-                    {item.name}
-                  </h5>
-                  <h5>
-                    Price: {item.quantity} * {item.price} = {" "}
+                    Price: {item.quantity} * {item.price} ={" "}
                     {item.price * item.quantity}
                   </h5>
                   <h5 style={{ display: "inline" }}>Quantity: </h5>
                   <i
                     className="fa fa-plus"
                     onClick={() => {
-                      dispatch(
-                        addToCart(item, item.quantity + 1)
-                      );
+                      dispatch(addToCart(item, item.quantity + 1));
                     }}
                   ></i>
                   <b>{item.quantity}</b>
                   <i
                     className="fa fa-minus"
                     onClick={() => {
-                      dispatch(
-                        addToCart(item, item.quantity - 1)
-                      );
+                      dispatch(addToCart(item, item.quantity - 1));
                     }}
                   ></i>
                   <hr />

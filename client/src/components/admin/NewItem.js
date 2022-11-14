@@ -1,14 +1,27 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { newItem } from "../../actions/itemActions";
+import Error from "../Error";
+import Success from "../Success";
+
 export default function NewItem() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+
   const dispatch = useDispatch();
+  const { success, error } = useSelector((state) => state.newItemReducer);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  useEffect(() => {
+    if (!currentUser || !currentUser.isAdmin) {
+      window.location.href = "/";
+    }
+  }, []);
 
   function submitHandler(e) {
     e.preventDefault();
@@ -21,8 +34,11 @@ export default function NewItem() {
     };
     dispatch(newItem(item));
   }
+
   return (
     <div className="container text-start">
+      {success && <Success success="Created successfully" />}
+      {error && <Error error={error} />}
       <form onSubmit={submitHandler}>
         <div className="mb-1 col-md-6 ">
           <label htmlFor="itemName" className="form-label">

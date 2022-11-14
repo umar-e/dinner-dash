@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { getAllOrders } from "../../actions/orderActions";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
 import AdminOrder from "./AdminOrder";
+
 export default function OrderList() {
   const dispatch = useDispatch();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   const { orders, error, loading } = useSelector(
     (state) => state.getAllOrdersReducer
   );
+
   const [selected, setSelected] = useState("all");
   let adminOrders =
     selected === "all"
       ? orders
       : orders.filter((order) => order.status === selected);
+
   useEffect(() => {
-    dispatch(getAllOrders(currentUser));
+    if (!currentUser || !currentUser.isAdmin) {
+      window.location.href = "/";
+    }
+    dispatch(getAllOrders(currentUser, true));
   }, []);
 
   return (

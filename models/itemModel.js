@@ -6,6 +6,7 @@ const itemSchema = mongoose.Schema(
       type: String,
       required: true,
       min: [0, "price can't be lower than 0"],
+      unique: true,
     },
     price: { type: Number, required: true },
     category: { type: Array, required: true },

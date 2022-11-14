@@ -7,7 +7,7 @@ router.post("/placeorder", async (req, res) => {
   const { order } = req.body;
   const newOrder = new Order({ ...order });
   try {
-    newOrder.save();
+    await newOrder.save();
     res.send("Order created successfully");
   } catch (error) {
     res.status(400).json({ message: error });
@@ -15,10 +15,10 @@ router.post("/placeorder", async (req, res) => {
 });
 
 router.post("/getallorders", async (req, res) => {
-  const { currentUser } = req.body;
+  const { currentUser, admin } = req.body;
   let orders;
   try {
-    if (currentUser.isAdmin) {
+    if (admin) {
       orders = await Order.find({}).sort({ createdAt: -1 });
     } else {
       orders = await Order.find({ userId: currentUser._id }).sort({
@@ -54,7 +54,6 @@ router.patch("/changestatus", async (req, res) => {
     await doc.save();
     res.send("Order Updated Successfully");
   } catch (error) {
-    console.log(error.message);
     res.status(400).json({ message: error });
   }
 });

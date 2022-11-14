@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function AdminPage() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  useEffect(() => {
+    if (!currentUser || !currentUser.isAdmin) {
+      window.location.href = "/";
+    }
+  })
+
   return (
     <div>
       <h1>Admin</h1>

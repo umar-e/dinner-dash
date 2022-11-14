@@ -22,7 +22,7 @@ router.post("/newitem", async (req, res) => {
   }
   const newItem = new Item({ ...item });
   try {
-    newItem.save();
+    await newItem.save();
     res.send("Item created successfully");
   } catch (error) {
     res.status(400).json({ message: error });
@@ -52,17 +52,16 @@ router.patch("/changestatus", async (req, res) => {
   try {
     let doc = await Item.findOne({ _id: item._id });
     doc.isRetired = status;
-    doc.save();
+    await doc.save();
     res.send("Item Updated Successfully");
   } catch (error) {
-    console.log(error.message);
     res.status(400).json({ message: error });
   }
 });
 
 router.post("/edititem", async (req, res) => {
   let { item } = req.body;
-  if (item.image.trim() === "" || item.image === undefined) {
+  if (item.image === undefined || item.image.trim() === "") {
     item = {
       ...item,
       image:
@@ -70,9 +69,10 @@ router.post("/edititem", async (req, res) => {
     };
   }
   try {
-    await Item.replaceOne(item._id, { ...item });
-    res.send("Item created successfully");
+    await Item.replaceOne({ _id: item._id }, { ...item });
+    res.send("Item edited successfully");
   } catch (error) {
+    console.log(error.message);
     res.status(400).json({ message: error });
   }
 });

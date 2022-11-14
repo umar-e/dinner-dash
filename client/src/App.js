@@ -1,7 +1,9 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
+
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
@@ -22,12 +24,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" exact element={<HomePage />} />
-          <Route path="/admin" element={<AdminPage />} />
           <Route path="/cart" exact element={<CartPage />} />
           <Route path="/register" exact element={<RegisterPage />} />
           <Route path="/login" exact element={<LoginPage />} />
           <Route path="/checkout" exact element={<CheckOutPage />} />
           <Route path="/orders" exact element={<OrdersPage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/admin/itemlist" element={<ItemList />} />
           <Route path="/admin/orderlist" element={<OrderList />} />
           <Route path="/admin/newitem" element={<NewItem />} />
