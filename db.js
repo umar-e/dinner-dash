@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const mongoURL =
-  "mongodb+srv://umar_ejaz:rNWFLI4QWEI5ybq3@cluster0.v5yxa95.mongodb.net/dinner-dash";
+const mongoURL = process.env.MONGO_URL
 
 mongoose.connect(mongoURL, { useUnifiedTopology: true, useNewUrlParser: true });
 
