@@ -18,7 +18,7 @@ export default function HomePage() {
   let categoryItems =
     category === "all"
       ? items
-      : items.filter((order) => order.category.includes(category));
+      : items?.filter((order) => order.category.includes(category));
 
   useEffect(() => {
     dispatch(getAllItems());

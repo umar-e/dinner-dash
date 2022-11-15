@@ -13,6 +13,7 @@ export const getAllItemsReducer = (state = { items: [] }, action) => {
       };
     case "GET_ITEMS_FAILED":
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };
