@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../actions/userActions";
+
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import Success from "../components/Success";
 
 export default function RegisterPage() {
   const [name, setName] = useState();
+  const [displayName, setDisplayName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+  const dispatch = useDispatch();
+
   const { error, loading, success } = useSelector(
     (state) => state.registerUserReducer
   );
 
-  const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
       window.location.href = "/";
@@ -29,11 +32,12 @@ export default function RegisterPage() {
         name,
         email,
         password,
+        displayName,
       };
-      console.log(user);
       dispatch(registerUser(user));
     }
   }
+
   return (
     <div className="row justify-content-center">
       <div className="col-md-5 mt-5 text-start">
@@ -51,6 +55,13 @@ export default function RegisterPage() {
             onChange={(e) => setName(e.target.value)}
           />
           <input
+            type="text"
+            placeholder="display name"
+            className="form-control"
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+          />
+          <input
             required
             type="text"
             placeholder="email"
@@ -60,7 +71,7 @@ export default function RegisterPage() {
           />
           <input
             required
-            type="text"
+            type="password"
             placeholder="password"
             className="form-control"
             value={password}
@@ -68,7 +79,7 @@ export default function RegisterPage() {
           />
           <input
             required
-            type="text"
+            type="password"
             placeholder="confirm password"
             className="form-control"
             value={confirmPassword}

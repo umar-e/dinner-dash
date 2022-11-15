@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { placeOrder } from "../actions/orderActions";
+
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import Success from "../components/Success";
@@ -9,18 +11,23 @@ export default function CheckOutPage() {
   const [address, setAddress] = useState();
   const [cardNumber, setCardNumber] = useState();
   const [cvv, setCvv] = useState();
+  const dispatch = useDispatch();
+
   const { error, loading, success } = useSelector(
     (state) => state.placeOrderReducer
   );
+
   const { cartItems } = useSelector((state) => state.cartReducer);
   let subtotal = cartItems.reduce((x, item) => x + item.price, 0);
+
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!currentUser) {
+      window.location.href = "/cart";
       alert("Please login first");
     }
-  }, []);
+  });
 
   function handleCheckout() {
     let order = {
@@ -35,6 +42,7 @@ export default function CheckOutPage() {
     };
     dispatch(placeOrder(order));
   }
+
   return (
     <div className="row justify-content-center">
       <div className="col-md-5 mt-5 text-start">

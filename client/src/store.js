@@ -2,24 +2,36 @@ import {
   legacy_createStore as createStore,
   applyMiddleware,
   combineReducers,
+  compose,
 } from "redux";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "@redux-devtools/extension";
-import { getAllItemsReducer } from "./reducers/itemReducer";
+import {
+  getAllItemsReducer,
+  newItemReducer,
+  deleteItemReducer,
+  changeItemStatusReducer,
+  editItemReducer,
+} from "./reducers/itemReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { loginUserReducer, registerUserReducer } from "./reducers/userReducer";
 import {
   getAllOrdersReducer,
   placeOrderReducer,
+  changeOrderStatusReducer,
 } from "./reducers/orderReducer";
 
 const finalReducer = combineReducers({
-  getAllItemsReducer: getAllItemsReducer,
-  cartReducer: cartReducer,
-  registerUserReducer: registerUserReducer,
-  loginUserReducer: loginUserReducer,
-  placeOrderReducer: placeOrderReducer,
-  getAllOrdersReducer: getAllOrdersReducer,
+  getAllItemsReducer,
+  cartReducer,
+  registerUserReducer,
+  loginUserReducer,
+  placeOrderReducer,
+  getAllOrdersReducer,
+  newItemReducer,
+  changeOrderStatusReducer,
+  deleteItemReducer,
+  changeItemStatusReducer,
+  editItemReducer,
 });
 
 const cartItems = localStorage.getItem("cartItems")
@@ -37,7 +49,8 @@ const initialState = {
     currentUser,
   },
 };
-const composeEnhancers = composeWithDevTools({});
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   finalReducer,
   initialState,

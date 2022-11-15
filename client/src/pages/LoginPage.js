@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { loginUser } from "../actions/userActions";
+
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 
 export default function LoginPage() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
   const { loading, error } = useSelector((state) => state.loginUserReducer);
   const dispatch = useDispatch();
 
@@ -20,6 +23,7 @@ export default function LoginPage() {
     const user = { email, password };
     dispatch(loginUser(user));
   }
+
   return (
     <div className="row justify-content-center">
       <div className="col-md-5 mt-5 text-start">
@@ -37,7 +41,7 @@ export default function LoginPage() {
           />
           <input
             required
-            type="text"
+            type="password"
             placeholder="password"
             className="form-control"
             value={password}

@@ -7,6 +7,7 @@ export default function Navbar() {
   const { currentUser } = useSelector((state) => state.loginUserReducer);
 
   const dispatch = useDispatch();
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded">
@@ -36,7 +37,9 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  {currentUser.name}
+                  {currentUser.displayName
+                    ? currentUser.displayName
+                    : currentUser.name}
                 </a>
                 <div
                   className="dropdown-menu"

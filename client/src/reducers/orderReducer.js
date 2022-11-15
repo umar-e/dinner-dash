@@ -41,3 +41,24 @@ export const getAllOrdersReducer = (state = { orders: [] }, action) => {
       return state;
   }
 };
+
+export const changeOrderStatusReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "CHANGE_STATUS_REQUEST":
+      return {
+        loading: true,
+      };
+    case "CHANGE_STATUS_SUCCESS":
+      return {
+        loading: false,
+        success: true,
+      };
+    case "CHANGE_STATUS_FAILED":
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
