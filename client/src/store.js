@@ -5,33 +5,15 @@ import {
   compose,
 } from "redux";
 import thunk from "redux-thunk";
-import {
-  getAllItemsReducer,
-  newItemReducer,
-  deleteItemReducer,
-  changeItemStatusReducer,
-  editItemReducer,
-} from "./reducers/itemReducer";
-import { cartReducer } from "./reducers/cartReducer";
-import { loginUserReducer, registerUserReducer } from "./reducers/userReducer";
-import {
-  getAllOrdersReducer,
-  placeOrderReducer,
-  changeOrderStatusReducer,
-} from "./reducers/orderReducer";
-
+import itemReducer from "./reducers/itemReducer";
+import cartReducer from "./reducers/cartReducer";
+import userReducer from "./reducers/userReducer";
+import orderReducer from "./reducers/orderReducer";
 const finalReducer = combineReducers({
-  getAllItemsReducer,
   cartReducer,
-  registerUserReducer,
-  loginUserReducer,
-  placeOrderReducer,
-  getAllOrdersReducer,
-  newItemReducer,
-  changeOrderStatusReducer,
-  deleteItemReducer,
-  changeItemStatusReducer,
-  editItemReducer,
+  itemReducer,
+  userReducer,
+  orderReducer,
 });
 
 const cartItems = localStorage.getItem("cartItems")
@@ -45,7 +27,7 @@ const initialState = {
   cartReducer: {
     cartItems,
   },
-  loginUserReducer: {
+  userReducer: {
     currentUser,
   },
 };

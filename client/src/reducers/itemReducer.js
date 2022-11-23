@@ -1,9 +1,9 @@
-export const getAllItemsReducer = (state = { items: [] }, action) => {
+const itemReducer = (state = { items: [] }, action) => {
   switch (action.type) {
     case "GET_ITEMS_REQUEST":
       return {
-        loading: true,
         ...state,
+        loading: true,
       };
     case "GET_ITEMS_SUCCESS":
       return {
@@ -17,88 +17,71 @@ export const getAllItemsReducer = (state = { items: [] }, action) => {
         loading: false,
         error: action.payload,
       };
-
-    default:
-      return state;
-  }
-};
-
-export const newItemReducer = (state = {}, action) => {
-  switch (action.type) {
     case "NEW_ITEM_REQUEST":
       return {
+        ...state,
         loading: true,
       };
     case "NEW_ITEM_SUCCESS":
       return {
+        ...state,
         loading: false,
         success: true,
       };
     case "NEW_ITEM_FAILED":
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };
-    default:
-      return state;
-  }
-};
-
-export const deleteItemReducer = (state = {}, action) => {
-  switch (action.type) {
     case "DELETE_ITEM_REQUEST":
       return {
+        ...state,
         loading: true,
       };
     case "DELETE_ITEM_SUCCESS":
       return {
+        ...state,
         loading: false,
         success: true,
       };
     case "DELETE_ITEM_FAILED":
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };
-    default:
-      return state;
-  }
-};
-
-export const changeItemStatusReducer = (state = {}, action) => {
-  switch (action.type) {
     case "CHANGE_ITEM_STATUS_REQUEST":
       return {
+        ...state,
         loading: true,
       };
     case "CHANGE_ITEM_STATUS_SUCCESS":
       return {
+        ...state,
         loading: false,
         success: true,
       };
     case "CHANGE_ITEM_STATUS_FAILED":
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };
-    default:
-      return state;
-  }
-};
-
-export const editItemReducer = (state = {}, action) => {
-  switch (action.type) {
     case "EDIT_ITEM_REQUEST":
       return {
+        ...state,
         loading: true,
       };
     case "EDIT_ITEM_SUCCESS":
       return {
+        ...state,
         loading: false,
         success: true,
       };
     case "EDIT_ITEM_FAILED":
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };
@@ -106,3 +89,4 @@ export const editItemReducer = (state = {}, action) => {
       return state;
   }
 };
+export default itemReducer;

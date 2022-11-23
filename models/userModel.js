@@ -12,4 +12,9 @@ const userSchema = mongoose.Schema(
   }
 );
 
+userSchema.methods.generateAuthToken = function () {
+  const token = tokenGenerator(this._id);
+  return token;
+};
+
 module.exports = mongoose.model("users", userSchema);

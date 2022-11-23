@@ -1,4 +1,4 @@
-export const cartReducer = (state = { cartItems: [] }, action) => {
+const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
       const exists = state.cartItems.find(
@@ -28,3 +28,4 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       return state;
   }
 };
+export default cartReducer;

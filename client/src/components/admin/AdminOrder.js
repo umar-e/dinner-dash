@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import OrderItem from "../OrderItem";
 
 import { useDispatch } from "react-redux";
@@ -6,19 +6,38 @@ import { changeOrderStatus } from "../../actions/orderActions";
 
 export default function Order({ order }) {
   const dispatch = useDispatch();
-  function statusHandler() {
-    dispatch(changeOrderStatus(order));
-  }
+  // const [status, setStatus] = useState(order.status);
 
+  function statusHandler() {
+    // switch (status) {
+    //   case "ordered":
+    //     setStatus("paid");
+    //     break;
+    //   case "paid":
+    //     setStatus("completed");
+    //     break;
+    //   case "completed":
+    //     setStatus("canceled");
+    //     break;
+    //   case "canceled":
+    //     setStatus("ordered");
+    //   default:
+    //     break;
+    // }
+    // console.log(status)
+
+    dispatch(changeOrderStatus(order._id));
+  }
   return (
     <div className="flex-container">
       <div className="col">
         <h5>Items:</h5>
-        {order.cartItems.map((item) => (
-          <div>
-            <OrderItem item={item} />
-          </div>
-        ))}
+        {order &&
+          order.cartItems.map((item, index) => (
+            <div>
+              <OrderItem item={item} quantity={order.itemQuantity[index]} />
+            </div>
+          ))}
       </div>
       <div className="col">
         <h5>Address:</h5>

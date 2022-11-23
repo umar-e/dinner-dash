@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { logoutUser } from "../actions/userActions";
 
 export default function Navbar() {
   const cartState = useSelector((state) => state.cartReducer);
-  const { currentUser } = useSelector((state) => state.loginUserReducer);
+  const { currentUser } = useSelector((state) => state.userReducer);
 
   const dispatch = useDispatch();
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           Dinner Dash
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -37,17 +38,15 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  {currentUser.displayName
-                    ? currentUser.displayName
-                    : currentUser.name}
+                  {currentUser.displayName ? currentUser.displayName : currentUser.name}
                 </a>
                 <div
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="/orders">
+                  <Link className="dropdown-item" to="/orders">
                     Orders
-                  </a>
+                  </Link>
                   <a
                     className="dropdown-item"
                     href="#"
@@ -61,16 +60,16 @@ export default function Navbar() {
               </div>
             ) : (
               <li className="nav-item">
-                <a className="nav-link" href="/login">
+                <Link className="nav-link" to="/login">
                   Login
-                </a>
+                </Link>
               </li>
             )}
 
             <li className="nav-item">
-              <a className="nav-link" href="/cart">
+              <Link className="nav-link" to="/cart">
                 Cart {cartState.cartItems.length}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

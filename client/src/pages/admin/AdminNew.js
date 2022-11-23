@@ -1,0 +1,114 @@
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
+
+import { getAllItems, newItem } from "../../actions/itemActions";
+import Error from "../../components/Error";
+import Success from "../../components/Success";
+
+export default function AdminNew() {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+
+  const dispatch = useDispatch();
+  const { success, error } = useSelector((state) => state.itemReducer);
+  const { currentUser } = useSelector((state) => state.userReducer);
+
+  function submitHandler(e) {
+    e.preventDefault();
+    const item = {
+      name,
+      price: Number(price),
+      category: category.split(",").map(cat => cat.trim()),
+      description,
+      image,
+    };
+   dispatch(newItem(item));
+  //  dispatch(getAllItems())
+  }
+  if (!currentUser || !currentUser.isAdmin) {
+    return <Navigate to="/" />;
+  } else {
+    return (
+      <div className="container text-start">
+        {success && <Success success="Created successfully" />}
+        {error && <Error error={error.message? error.message: "Something went wrong"} />}
+        <form onSubmit={submitHandler}>
+          <div className="mb-1 col-md-6 ">
+            <label htmlFor="itemName" className="form-label">
+              Name
+            </label>
+            <input
+              required
+              type="text"
+              className="form-control"
+              id="itemName"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div className="mb-1 col-md-6">
+            <label htmlFor="price" className="form-label">
+              Price
+            </label>
+            <input
+              required
+              type="number"
+              className="form-control"
+              id="price"
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+          <div className="mb-1 col-md-6">
+            <label htmlFor="category" className="form-label">
+              Category
+            </label>
+            <input
+              required
+              type="text"
+              className="form-control"
+              id="category"
+              onChange={(e) => setCategory(e.target.value)}
+            />
+            <div className="form-text">
+              Separate categories with comma. " , "
+            </div>
+          </div>
+          <div className="mb-1 col-md-6">
+            <label htmlFor="exampleFormControlTextarea1">Description</label>
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            ></textarea>
+          </div>
+          <div className="mb-3 col-md-6 text-start">
+            <label className="form-label" htmlFor="image">
+              Image URL
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="image"
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary mb-5 col-md-4">
+            Submit
+          </button>
+          <div className="w-100 text-start">
+            <Link to={"/admin"} className="btn btn-danger">
+              Back
+            </Link>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}

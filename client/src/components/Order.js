@@ -6,11 +6,12 @@ export default function Order({ order }) {
     <div className="flex-container">
       <div className="col">
         <h5>Items:</h5>
-        {order.cartItems.map((item) => (
-          <div>
-            <OrderItem item={item} />
-          </div>
-        ))}
+        {order &&
+          order.cartItems.map((item, index) => (
+            <div>
+              <OrderItem item={item} quantity={order.itemQuantity[index]} />
+            </div>
+          ))}
       </div>
       <div className="col">
         <h5>Address:</h5>
