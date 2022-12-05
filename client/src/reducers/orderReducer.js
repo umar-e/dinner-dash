@@ -19,7 +19,7 @@ const orderReducer = (state = { orders: [] }, action) => {
       };
     case "GET_ORDERS_REQUEST":
       return {
-        //...state,
+        ...state,
         loading: true,
       };
     case "GET_ORDERS_SUCCESS":
@@ -36,7 +36,7 @@ const orderReducer = (state = { orders: [] }, action) => {
       };
     case "CHANGE_STATUS_REQUEST":
       return {
-      //  ...state,
+       ...state,
         loading: true,
       };
     case "CHANGE_STATUS_SUCCESS":

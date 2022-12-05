@@ -2,23 +2,20 @@ import React, { useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
-import {
-  getAllItems,
-} from "../../actions/itemActions";
+import { getAllItems } from "../../actions/itemActions";
 import AdminItem from "../../components/admin/AdminItem";
 import Error from "../../components/Error";
-import Loading from "../../components/Loading";
 
 export default function AdminItems() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.userReducer);
 
-  const { items, error, loading } = useSelector((state) => state.itemReducer);
+  const { items, error } = useSelector((state) => state.itemReducer);
 
   useEffect(() => {
-    // if (!items || items.length === 0) {
-    // }
-    dispatch(getAllItems());
+    if (!items || items.length === 0) {
+      dispatch(getAllItems());
+    }
   }, []);
 
   if (!currentUser || !currentUser.isAdmin) {
@@ -26,7 +23,6 @@ export default function AdminItems() {
   } else {
     return (
       <div className="justify-content-start">
-        {/* {loading && <Loading />} */}
         {error && (
           <Error
             error={error.message ? error.message : "Something went wrong"}
@@ -46,7 +42,8 @@ export default function AdminItems() {
               </tr>
             </thead>
             <tbody>
-              {items && items.map((item) => <AdminItem item={item} />)}
+              {items &&
+                items.map((item) => <AdminItem key={item._id} item={item} />)}
             </tbody>
           </Table>
         }

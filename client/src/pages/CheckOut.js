@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-import { placeOrder } from "../actions/orderActions";
+import { getAllOrders, placeOrder } from "../actions/orderActions";
 
 import Error from "../components/Error";
 import Loading from "../components/Loading";
@@ -20,7 +20,7 @@ export default function CheckOut() {
   const { currentUser } = useSelector((state) => state.userReducer);
 
   const { cartItems } = useSelector((state) => state.cartReducer);
-  const subtotal = cartItems.reduce((x, item) => x + item.price, 0);
+  const subtotal = cartItems?.reduce((x, item) => x + item.price, 0);
   const cartIds = cartItems?.map((item) => item._id);
   const cartQuantity = cartItems?.map((item) => item.quantity);
 
@@ -36,6 +36,7 @@ export default function CheckOut() {
       cvv: Number(cvv),
     };
     dispatch(placeOrder(order));
+    // dispatch(getAllOrders(false))
   }
   if (!currentUser) {
     return <Navigate to="/cart" />;
@@ -45,7 +46,11 @@ export default function CheckOut() {
         <div className="col-md-5 mt-5 text-start">
           {loading && <Loading />}
           {success && <Success success={"Payment Successful"} />}
-          {error && <Error error={error.message ? error.message: "Something went wrong"} />}
+          {error && (
+            <Error
+              error={error.message ? error.message : "Something went wrong"}
+            />
+          )}
           <h2 className="text-center m-2">Checkout</h2>
           <div>
             <form onSubmit={handleCheckout}>

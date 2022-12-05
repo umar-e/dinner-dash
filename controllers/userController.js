@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
 const { register, login } = require("../services/userServices");
-const { tokenGenerator } = require("../utils/JsonTokenGenerator");
+const { tokenGenerator } = require("../middleware/JsonTokenGenerator");
 
 const registerUser = async (req, res) => {
   const { name, email, password, displayName } = req.body;
@@ -18,9 +18,9 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
     let user;
-    try{
-      user = (await login(email)).toJSON();}
-    catch (error) {
+    try {
+      user = (await login(email)).toJSON();
+    } catch (error) {
       return res.status(404).json({ message: "User not found" });
     }
     if (await bcrypt.compare(password, user.password)) {

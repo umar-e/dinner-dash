@@ -15,9 +15,9 @@ export default function Orders() {
   const { orders, error, loading } = useSelector((state) => state.orderReducer);
 
   useEffect(() => {
-    if (!orders || orders.length === 0) {
-      dispatch(getAllOrders(false));
-    }
+    // if (!orders || orders.length === 0) {
+    // }
+    dispatch(getAllOrders(false));
   }, []);
 
   if (!currentUser) {
@@ -28,7 +28,11 @@ export default function Orders() {
         <h1>My Orders </h1>
         <div className="row justify-content-center">
           {loading && <Loading />}
-          {error && <Error error={error.message? error.message: "Something went wrong"} />}
+          {error && (
+            <Error
+              error={error.message ? error.message : "Something went wrong"}
+            />
+          )}
           {orders &&
             orders.map((order) => {
               return (

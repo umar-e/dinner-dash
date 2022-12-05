@@ -16,21 +16,7 @@ const finalReducer = combineReducers({
   orderReducer,
 });
 
-const cartItems = localStorage.getItem("cartItems")
-  ? JSON.parse(localStorage.getItem("cartItems"))
-  : [];
-const currentUser = localStorage.getItem("currentUser")
-  ? JSON.parse(localStorage.getItem("currentUser"))
-  : null;
-
-const initialState = {
-  cartReducer: {
-    cartItems,
-  },
-  userReducer: {
-    currentUser,
-  },
-};
+const initialState = {};
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(

@@ -7,7 +7,6 @@ const orderSchema = mongoose.Schema(
       required: true,
     },
     cartItems:
-      // { type: Array, required: true }
       [{ type: mongoose.Schema.Types.ObjectId, ref: "items", required: true }],
     itemQuantity: { type: Array, required: true },
     subtotal: { type: Number, required: true },

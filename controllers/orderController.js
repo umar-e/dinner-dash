@@ -24,13 +24,12 @@ const getAllOrders = async (req, res) => {
 };
 const getAllAdminOrders = async (req, res) => {
   const { user } = req.user;
-    try {
-      const orders = await findAllOrders(user.isAdmin, user);
-      res.send(orders);
-    } catch (error) {
-      return res.status(500).json({ message: "Server Error" });
-    }
-
+  try {
+    const orders = await findAllOrders(user.isAdmin, user);
+    res.send(orders);
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error" });
+  }
 };
 const changeOrderStatus = async (req, res) => {
   const order_id = req.params.id;

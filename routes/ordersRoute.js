@@ -5,8 +5,8 @@ const {
   changeOrderStatus,
   getAllAdminOrders,
 } = require("../controllers/orderController");
-const authenticateRole = require("../utils/authenticateRole");
-const authenticateToken = require("../utils/AuthenticateToken");
+const authenticateRole = require("../middleware/authenticateRole");
+const authenticateToken = require("../middleware/AuthenticateToken");
 const router = express.Router();
 
 router.post("/", authenticateToken, newOrder);

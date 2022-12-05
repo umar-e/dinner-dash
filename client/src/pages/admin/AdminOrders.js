@@ -19,11 +19,14 @@ export default function AdminOrders() {
       ? orders
       : orders?.filter((order) => order.status === selected);
 
+  function changeOrders() {
+    dispatch(getAllOrders(true));
+  }
   useEffect(() => {
     if (!orders || orders.length === 0) {
       dispatch(getAllOrders(true));
     }
-  }, [orders]);
+  }, []);
   if (!currentUser || !currentUser.isAdmin) {
     return <Navigate to="/" />;
   } else {
@@ -32,7 +35,11 @@ export default function AdminOrders() {
         <h1> Orders </h1>
         <div className="row justify-content-center">
           {loading && <Loading />}
-          {error && <Error error={error.message? error.message: "Something went wrong"} />}
+          {error && (
+            <Error
+              error={error.message ? error.message : "Something went wrong"}
+            />
+          )}
           <div className="row justify-content-center">
             <div className="row justify-content-center">
               <select
@@ -47,7 +54,7 @@ export default function AdminOrders() {
               </select>
             </div>
             {adminOrders &&
-              adminOrders?.map((order) => {
+              adminOrders.map((order) => {
                 return (
                   <div className="col-md-8 p-3" key={order._id}>
                     <span>
@@ -55,7 +62,7 @@ export default function AdminOrders() {
                       {order.user.email}
                     </span>
                     <hr />
-                    <AdminOrder order={order} />
+                    <AdminOrder order={order} changeOrders={changeOrders} />
                     <hr />
                   </div>
                 );

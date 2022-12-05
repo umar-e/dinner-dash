@@ -17,7 +17,10 @@ export default function Item({ item }) {
   }
 
   return (
-    <div className="m-5 shadow-lg p-3 mb-5 bg-white rounded ">
+    <div
+      data-testid="item1"
+      className="m-5 shadow-lg p-3 mb-5 bg-white rounded "
+    >
       <div onClick={handleShow}>
         <h3>{item.name}</h3>
         <img

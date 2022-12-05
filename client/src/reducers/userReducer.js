@@ -1,8 +1,14 @@
-const userReducer = (state = {}, action) => {
+import { getLocalStorageItem } from "../utils/localStorageUtils";
+
+const currentUser = getLocalStorageItem("currentUser")
+  ? getLocalStorageItem("currentUser")
+  : null;
+
+const userReducer = (state = { currentUser }, action) => {
   switch (action.type) {
     case "USER_REGISTER_REQUEST":
       return {
-        ...state,
+        // ...state,
         loading: true,
       };
     case "USER_REGISTER_SUCCESS":
@@ -19,7 +25,7 @@ const userReducer = (state = {}, action) => {
       };
     case "USER_LOGIN_REQUEST":
       return {
-        ...state,
+        // ...state,
         loading: true,
       };
     case "USER_LOGIN_SUCCESS":
