@@ -8,7 +8,7 @@ export default function AdminHome() {
     return <Navigate to="/" />;
   } else {
     return (
-      <div>
+      <div data-testid="adminhome" >
         <h1>Admin</h1>
         <div className="flex-container">
           <div className="col">

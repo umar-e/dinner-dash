@@ -53,7 +53,7 @@ export default function Register() {
     return <Navigate to="/" />;
   } else {
     return (
-      <div className="row justify-content-center">
+      <div data-testid="register" className="row justify-content-center">
         <div className="col-md-5 mt-5 text-start">
           {loading && <Loading />}
           {success && <Success success={"User registered successfully"} />}

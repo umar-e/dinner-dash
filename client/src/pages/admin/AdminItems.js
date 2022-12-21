@@ -22,7 +22,7 @@ export default function AdminItems() {
     return <Navigate to="/" />;
   } else {
     return (
-      <div className="justify-content-start">
+      <div className="justify-content-start" data-testid="adminitems" >
         {error && (
           <Error
             error={error.message ? error.message : "Something went wrong"}

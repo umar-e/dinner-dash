@@ -34,12 +34,13 @@ export default function Item({ item }) {
         <div className="w-100 m-1">
           <p>Quantity</p>
           <select
+
             className="form-control"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           >
             {[...Array(10).keys()].map((x, i) => {
-              return <option value={i + 1}>{i + 1}</option>;
+              return <option key={i} value={i + 1}>{i + 1}</option>;
             })}
           </select>
         </div>

@@ -42,7 +42,7 @@ export default function CheckOut() {
     return <Navigate to="/cart" />;
   } else {
     return (
-      <div className="row justify-content-center">
+      <div data-testid="checkout" className="row justify-content-center">
         <div className="col-md-5 mt-5 text-start">
           {loading && <Loading />}
           {success && <Success success={"Payment Successful"} />}

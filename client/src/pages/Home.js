@@ -26,7 +26,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="row justify-content-center">
+    <div data-testid="homepage" className="row justify-content-center">
       <div className="row justify-content-center">
         <select
           onChange={(e) => setCategory(e.target.value)}

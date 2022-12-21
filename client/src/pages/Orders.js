@@ -24,7 +24,7 @@ export default function Orders() {
     return <Navigate to="/" />;
   } else {
     return (
-      <div>
+      <div data-testid="orderspage">
         <h1>My Orders </h1>
         <div className="row justify-content-center">
           {loading && <Loading />}

@@ -3,7 +3,7 @@ import OrderItem from "./OrderItem";
 
 export default function Order({ order }) {
   return (
-    <div className="flex-container">
+    <div data-testid="order1" className="flex-container">
       <div className="col">
         <h5>Items:</h5>
         {order &&

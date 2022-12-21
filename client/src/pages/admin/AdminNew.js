@@ -45,7 +45,7 @@ export default function AdminNew() {
     return <Navigate to="/" />;
   } else {
     return (
-      <div className="container text-start">
+      <div data-testid="adminnew" className="container text-start">
         {success && <Success success="Created successfully" />}
         {error && (
           <Error

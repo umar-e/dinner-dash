@@ -51,7 +51,7 @@ export default function EditItem() {
     return <Navigate to="/" />;
   } else {
     return (
-      <div>
+      <div data-testid="adminedit" >
         {loading && <Loading />}
         {error && (
           <Error

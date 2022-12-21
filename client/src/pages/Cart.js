@@ -6,7 +6,7 @@ import { addToCart, deleteFromCart } from "../actions/cartActions";
 export default function Cart() {
   const { cartItems } = useSelector((state) => state.cartReducer);
 
-  let subtotal = cartItems.reduce(
+  let subtotal = cartItems?.reduce(
     (x, item) => x + item.price * item.quantity,
     0
   );
@@ -24,7 +24,7 @@ export default function Cart() {
   }
 
   return (
-    <div>
+    <div data-testid="cartpage" >
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h1>My Cart</h1>

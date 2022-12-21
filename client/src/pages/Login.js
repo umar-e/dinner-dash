@@ -38,7 +38,7 @@ export default function Login() {
     return <Navigate to="/" />;
   } else {
     return (
-      <div className="row justify-content-center">
+      <div data-testid="login" className="row justify-content-center">
         <div className="col-md-5 mt-5 text-start">
           <h2 className="text-center m-2">Login</h2>
           {loading && <Loading />}

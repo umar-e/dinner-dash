@@ -31,7 +31,7 @@ export default function AdminOrders() {
     return <Navigate to="/" />;
   } else {
     return (
-      <div>
+      <div data-testid="adminorders" >
         <h1> Orders </h1>
         <div className="row justify-content-center">
           {loading && <Loading />}

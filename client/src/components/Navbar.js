@@ -10,7 +10,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div data-testid="navbar">
       <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded">
         <Link className="navbar-brand" to="/">
           Dinner Dash
