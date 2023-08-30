@@ -1,13 +1,15 @@
-import axios from "axios";
+import { loginUserAPI, registerUserAPI } from "../api/usersApi";
+import { removeLocalStorageItem, setLocalStorageItem } from "../utils/localStorageUtils";
+
+
 export const registerUser = (user) => async (dispatch) => {
   dispatch({ type: "USER_REGISTER_REQUEST" });
 
   try {
-    await axios.post("/api/users/register", user);
+    await registerUserAPI(user)
     dispatch({ type: "USER_REGISTER_SUCCESS" });
-    window.location.href = "/login";
   } catch (error) {
-    dispatch({ type: "USER_REGISTER_FAILED", payload: error });
+    dispatch({ type: "USER_REGISTER_FAILED", payload: error.response.data });
   }
 };
 
@@ -15,16 +17,22 @@ export const loginUser = (user) => async (dispatch) => {
   dispatch({ type: "USER_LOGIN_REQUEST" });
 
   try {
-    const response = await axios.post("/api/users/login", user);
+    const response = await loginUserAPI(user)
+    // localStorage.setItem("currentUser", JSON.stringify(response.data.user));
+    setLocalStorageItem("currentUser", response.data.user)
+    // localStorage.setItem("token", JSON.stringify(response.data.token));
+    setLocalStorageItem("token", response.data.token)
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: response.data });
-    localStorage.setItem("currentUser", JSON.stringify(response.data));
-    window.location.href = "/";
+    // window.location.href = "/"
   } catch (error) {
-    dispatch({ type: "USER_LOGIN_FAILED", payload: error });
+    dispatch({ type: "USER_LOGIN_FAILED", payload: error.response.data });
   }
 };
 
 export const logoutUser = () => (dispatch) => {
-  localStorage.removeItem("currentUser");
-  window.location.href = "/login";
+  // localStorage.removeItem("currentUser");
+  removeLocalStorageItem("currentUser");
+  // localStorage.removeItem("token");
+  removeLocalStorageItem("token")
+  window.location.href = '/'
 };

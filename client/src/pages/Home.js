@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getAllItems } from "../actions/itemActions";
 
 import Error from "../components/Error";
 import Item from "../components/Item";
 import Loading from "../components/Loading";
 
-export default function HomePage() {
+export default function Home() {
   const [category, setCategory] = useState("all");
   const dispatch = useDispatch();
 
   const { categories, items, error, loading } = useSelector(
-    (state) => state.getAllItemsReducer
+    (state) => state.itemReducer
   );
 
   let categoryItems =
     category === "all"
       ? items
-      : items.filter((order) => order.category.includes(category));
+      : items?.filter((order) => order.category.includes(category));
 
   useEffect(() => {
-    dispatch(getAllItems());
+    if (!items || items.length === 0) {
+      dispatch(getAllItems());
+    }
   }, []);
 
   return (
@@ -44,11 +45,9 @@ export default function HomePage() {
       </div>
 
       <div className="row">
-        {loading ? (
-          <Loading />
-        ) : error ? (
-          <Error error="Something went wrong" />
-        ) : (
+        {loading && <Loading />}
+        {error && <Error error={ error.message? error.message: "Something went wrong"} />}
+        {categoryItems &&
           categoryItems.map((item) => {
             return (
               !item.isRetired && (
@@ -59,8 +58,7 @@ export default function HomePage() {
                 </div>
               )
             );
-          })
-        )}
+          })}
       </div>
     </div>
   );

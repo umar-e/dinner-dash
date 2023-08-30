@@ -1,24 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import OrderItem from "../OrderItem";
 
 import { useDispatch } from "react-redux";
-import { changeOrderStatus } from "../../actions/orderActions";
+import { changeOrderStatus, getAllOrders } from "../../actions/orderActions";
 
-export default function Order({ order }) {
+export default function Order({ order, changeOrders }) {
   const dispatch = useDispatch();
-  function statusHandler() {
-    dispatch(changeOrderStatus(order));
-  }
 
+  function statusHandler() {
+    dispatch(changeOrderStatus(order._id));
+    changeOrders();
+  }
   return (
     <div className="flex-container">
       <div className="col">
         <h5>Items:</h5>
-        {order.cartItems.map((item) => (
-          <div>
-            <OrderItem item={item} />
-          </div>
-        ))}
+        {order &&
+          order.cartItems.map((item, index) => (
+            <div key={item._id}>
+              <OrderItem item={item} quantity={order.itemQuantity[index]} />
+            </div>
+          ))}
       </div>
       <div className="col">
         <h5>Address:</h5>

@@ -1,4 +1,10 @@
-export const cartReducer = (state = { cartItems: [] }, action) => {
+import { getLocalStorageItem } from "../utils/localStorageUtils";
+
+const cartItems = getLocalStorageItem("cartItems")
+  ? getLocalStorageItem("cartItems")
+  : [];
+
+const cartReducer = (state = { cartItems: cartItems }, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
       const exists = state.cartItems.find(
@@ -28,3 +34,4 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       return state;
   }
 };
+export default cartReducer;

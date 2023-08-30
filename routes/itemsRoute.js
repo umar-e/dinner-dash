@@ -1,80 +1,21 @@
 const express = require("express");
+const {
+  getAllItems,
+  newItem,
+  deleteItem,
+  getItem,
+  changeItemStatus,
+  editItem,
+} = require("../controllers/itemController");
+const authenticateRole = require("../middleware/authenticateRole");
+const authenticateToken = require("../middleware/AuthenticateToken");
 const router = express.Router();
 
-const Item = require("../models/itemModel");
-
-router.get("/getallitems", async (req, res) => {
-  try {
-    const items = await Item.find({});
-    res.send(items);
-  } catch (error) {
-    return res.status(400).json({ message: error });
-  }
-});
-router.post("/newitem", async (req, res) => {
-  let { item } = req.body;
-  if (item.image.trim() === "" || item.image === undefined) {
-    item = {
-      ...item,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdgpayOM1rZdWnQqPbXrXgCTkpScar0eRI9w6dPQS7PVR-oaUHZc3aevZbxUP7_YWjAbk&usqp=CAU",
-    };
-  }
-  const newItem = new Item({ ...item });
-  try {
-    await newItem.save();
-    res.send("Item created successfully");
-  } catch (error) {
-    res.status(400).json({ message: error });
-  }
-});
-
-router.post("/deleteitem", async (req, res) => {
-  const { item } = req.body;
-  try {
-    await Item.deleteOne({ _id: item._id });
-    res.status(200).json({ message: "Item deleted successfully" });
-  } catch (error) {
-    res.status(400).json({ message: error });
-  }
-});
-router.get("/getitem", async (req, res) => {
-  try {
-    const item = await Item.findOne({ _id: req.query.id });
-    res.send(item);
-  } catch (error) {
-    return res.status(400).json({ message: error });
-  }
-});
-router.patch("/changestatus", async (req, res) => {
-  const { item } = req.body;
-  let status = !item.isRetired;
-  try {
-    let doc = await Item.findOne({ _id: item._id });
-    doc.isRetired = status;
-    await doc.save();
-    res.send("Item Updated Successfully");
-  } catch (error) {
-    res.status(400).json({ message: error });
-  }
-});
-
-router.post("/edititem", async (req, res) => {
-  let { item } = req.body;
-  if (item.image === undefined || item.image.trim() === "") {
-    item = {
-      ...item,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdgpayOM1rZdWnQqPbXrXgCTkpScar0eRI9w6dPQS7PVR-oaUHZc3aevZbxUP7_YWjAbk&usqp=CAU",
-    };
-  }
-  try {
-    await Item.replaceOne({ _id: item._id }, { ...item });
-    res.send("Item edited successfully");
-  } catch (error) {
-    console.log(error.message);
-    res.status(400).json({ message: error });
-  }
-});
+router.get("/", getAllItems);
+router.post("/", authenticateToken, authenticateRole, newItem);
+router.delete("/:id", authenticateToken, authenticateRole, deleteItem);
+router.get("/:id", authenticateToken, getItem);
+router.patch("/:id", authenticateToken, authenticateRole, changeItemStatus);
+router.put("/:id", authenticateToken, authenticateRole, editItem);
 
 module.exports = router;

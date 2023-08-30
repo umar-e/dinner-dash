@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 
-export default function OrderItem({ item }) {
+export default function OrderItem({ item, quantity }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -13,7 +13,7 @@ export default function OrderItem({ item }) {
         <b onClick={handleShow}>{item.name}</b>{" "}
       </p>
       <p>
-        {item.price} * {item.quantity} = {item.price * item.quantity}
+        {item.price} * {quantity} = {item.price * quantity}
       </p>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

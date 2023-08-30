@@ -1,3 +1,5 @@
+import { setLocalStorageItem } from "../utils/localStorageUtils";
+
 export const addToCart = (item, quantity) => (dispatch, getState) => {
   let cartItem = {
     name: item.name,
@@ -13,11 +15,13 @@ export const addToCart = (item, quantity) => (dispatch, getState) => {
     dispatch({ type: "ADD_TO_CART", payload: cartItem });
   }
   const cartItems = getState().cartReducer.cartItems;
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  setLocalStorageItem("cartItems", cartItems)
 };
 
 export const deleteFromCart = (item) => (dispatch, getState) => {
   dispatch({ type: "DELETE_FROM_CART", payload: item });
   const cartItems = getState().cartReducer.cartItems;
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  setLocalStorageItem("cartItems", cartItems)
 };

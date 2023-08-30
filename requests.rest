@@ -1,0 +1,29 @@
+GET http://localhost:5000/api/items/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzN2M5NGM5NjJkNzgyMjgyNzM5MmNiZSIsIm5hbWUiOiJVbWEzMXIiLCJkaXNwbGF5TmFtZSI6Ik5vdCBtZSIsImVtYWlsIjoidW0yMmFyQHVtYXIuY29tIiwiaXNBZG1pbiI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjItMTEtMjJUMDk6MjI6MTcuMDU3WiIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMjJUMDk6MjI6MTcuMDU3WiIsIl9fdiI6MH0sImlhdCI6MTY2OTExNjQzMSwiZXhwIjoxNjY5NzIxMjMxfQ.u-VcRpzenaqAEA5SbiWJDLBtvPp273hMxG788uAlhns
+
+###
+POST http://localhost:5000/api/users/register
+Content-Type: application/json
+
+{
+  "name": "Uma31r",
+  "email": "um22ar@umar.com",
+  "password": "password",
+  "displayName": "Not me"
+}
+###
+POST http://localhost:5000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "um22ar@umar.com",
+  "password": "password"
+}
+
+###
+POST http://localhost:5000/api/items/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzN2M5NGM5NjJkNzgyMjgyNzM5MmNiZSIsIm5hbWUiOiJVbWEzMXIiLCJkaXNwbGF5TmFtZSI6Ik5vdCBtZSIsImVtYWlsIjoidW0yMmFyQHVtYXIuY29tIiwiaXNBZG1pbiI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjItMTEtMjJUMDk6MjI6MTcuMDU3WiIsInVwZGF0ZWRBdCI6IjIwMjItMTEtMjJUMDk6MjI6MTcuMDU3WiIsIl9fdiI6MH0sImlhdCI6MTY2OTExNjQzMSwiZXhwIjoxNjY5NzIxMjMxfQ.u-VcRpzenaqAEA5SbiWJDLBtvPp273hMxG788uAlhns
+
+###
+GET http://localhost:5000/api/orders/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzN2M5NGM5NjJkNzgyMjgyNzM5MmNiZSIsIm5hbWUiOiJVbWEzMXIiLCJkaXNwbGF5TmFtZSI6Ik5vdCBtZSIsImVtYWlsIjoidW0yMmFyQHVtYXIuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMi0xMS0yMlQwOToyMjoxNy4wNTdaIiwidXBkYXRlZEF0IjoiMjAyMi0xMS0yMlQwOToyMjoxNy4wNTdaIiwiX192IjowfSwiaWF0IjoxNjY5MTM1MTQ4LCJleHAiOjE2Njk3Mzk5NDh9.R3cC80Ksx_4_TSTiOZlVTnHIAPZFNwjyeRSaEDMvgh0
